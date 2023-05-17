@@ -22,35 +22,33 @@
                 <th>Username</th>
                 <th>Actions</th>
             </tr>
-            <tr>
-                <td>1</td>
-                <td>Vjay</td>
-                <td>vjay</td>
-                <td>
-                    <a class="btn-secondary" href="#">Update Admin</a>
-                    <a class="btn-danger" href="#">Delete Admin</a>
-                </td>
-            </tr>
-            <tr>
-                <td>1</td>
-                <td>Vjay</td>
-                <td>vjay</td>
-                <td>
+            <?php
+            $sql =  "SELECT * FROM tbl_admin ";
+            $res = mysqli_query($conn, $sql);
+            if ($res) {
+                $count = mysqli_num_rows($res);
+                if ($count > 0) {
+                    while ($rows = mysqli_fetch_assoc($res)) {
 
-                    <a class="btn-secondary" href="#">Update Admin</a>
-                    <a class="btn-danger" href="#">Delete Admin</a>
-                </td>
-            </tr>
-            <tr>
-                <td>1</td>
-                <td>Vjay</td>
-                <td>vjay</td>
-                <td>
+                        $id = $rows["id"];
+                        $full_name = $rows["full_name"];
+                        $username = $rows["username"];
+                        echo '
+                        <tr>
+                            <td>' . $id . '</td>
+                            <td>' . $full_name . '</td>
+                            <td>' . $username . '</td>
+                            <td>
+                                <a class="btn-secondary" href="#">Update Admin</a>
+                                <a class="btn-danger" href="#">Delete Admin</a>
+                            </td>
+                        </tr>';
+                    }
+                } else {
+                }
+            }
+            ?>
 
-                    <a class="btn-secondary" href="#">Update Admin</a>
-                    <a class="btn-danger" href="#">Delete Admin</a>
-                </td>
-            </tr>
         </table>
 
     </div>
