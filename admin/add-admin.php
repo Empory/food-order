@@ -1,10 +1,16 @@
 <?php
 include("partials/menu.php");
- ?>
+?>
 <div class="main-content">
     <div class="wrapper">
         <h1>Add Admin</h1>
         <br><br>
+        <?php
+        if (isset($_SESSION["add"])) {
+            echo $_SESSION["add"];
+            unset($_SESSION["add"]);
+        }
+        ?>
         <form action="" method="POST">
             <table class="tbl-30">
                 <tr>
@@ -34,14 +40,15 @@ include("partials/menu.php");
 </div>
 
 
-<?php include("partials/footer.php");?>
+<?php include("partials/footer.php"); ?>
 <?php
-    if (isset($_POST["submit"])) {
-        $full_name = $_POST["full_name"];
-        $username = $_POST["username"];
-        $password = md5($_POST["password"]);
-        $sql = "INSERT INTO tbl_admin SET full_name='$full_name',username='$username',password='$password' 
+if (isset($_POST["submit"])) {
+    $full_name = $_POST["full_name"];
+    $username = $_POST["username"];
+    $password = md5($_POST["password"]);
+    $sql = "INSERT INTO tbl_admin SET full_name='$full_name',username='$username',password='$password' 
         ";
+<<<<<<< HEAD
         
         if ($db_select) {
             header("location:index.php");
@@ -49,6 +56,16 @@ include("partials/menu.php");
             echo "wrog";
         }
         $res = mysqli_query($conn, $sql) or die(mysqli_error($conn));
+=======
+
+    if ($db_select) {
+        $_SESSION["add"] = "admin added";
+        header("location:" . SITEURL . "admin/manage-admin.php");
+    } else {
+        echo "wrog";
+>>>>>>> a2bc6d6cf08aee6989ca15278f00ad77c95e6eda
     }
+    $res = mysqli_query($conn, $sql) or die(mysqli_error($conn));
+}
 
 ?>
