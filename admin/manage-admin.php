@@ -10,6 +10,10 @@
             echo $_SESSION["add"];
             unset($_SESSION["add"]);
         }
+        if (isset($_SESSION["delete"])) {
+            echo $_SESSION["delete"];
+            unset($_SESSION["delete"]);
+        }
         ?>
         <br><br><br>
         <!-- Button to Add Admin -->
@@ -27,10 +31,12 @@
             $res = mysqli_query($conn, $sql);
             if ($res) {
                 $count = mysqli_num_rows($res);
+                $sn=1;
                 if ($count > 0) {
                     while ($rows = mysqli_fetch_assoc($res)) {
 
-                        $id = $rows["id"];
+                        $id = $sn++;
+                        $idd= $rows["id"];
                         $full_name = $rows["full_name"];
                         $username = $rows["username"];
                         echo '
@@ -40,7 +46,7 @@
                             <td>' . $username . '</td>
                             <td>
                                 <a class="btn-secondary" href="#">Update Admin</a>
-                                <a class="btn-danger" href="#">Delete Admin</a>
+                                <a class="btn-danger" href="'.SITEURL.'admin/delete-admin.php?id='.$idd.'">Delete Admin</a>
                             </td>
                         </tr>';
                     }

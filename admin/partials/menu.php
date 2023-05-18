@@ -1,4 +1,4 @@
-<?php include("../CONFIG/constants.php"); ?>
+<?php include("../config/constants.php"); ?>
 <html>
 
 <head>

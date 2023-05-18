@@ -48,22 +48,12 @@ if (isset($_POST["submit"])) {
     $password = md5($_POST["password"]);
     $sql = "INSERT INTO tbl_admin SET full_name='$full_name',username='$username',password='$password' 
         ";
-<<<<<<< HEAD
-        
-        if ($db_select) {
-            header("location:index.php");
-        }else{
-            echo "wrog";
-        }
-        $res = mysqli_query($conn, $sql) or die(mysqli_error($conn));
-=======
 
     if ($db_select) {
         $_SESSION["add"] = "admin added";
         header("location:" . SITEURL . "admin/manage-admin.php");
     } else {
         echo "wrog";
->>>>>>> a2bc6d6cf08aee6989ca15278f00ad77c95e6eda
     }
     $res = mysqli_query($conn, $sql) or die(mysqli_error($conn));
 }
